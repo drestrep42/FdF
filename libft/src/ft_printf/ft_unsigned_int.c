@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_unsigned_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/11/04 03:33:01 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:03:14 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/ft_printf/ft_printf.h"
 
-void	malloc_error(void)
+void	ft_unsigned_int(int var, int *len)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	unsigned int	i;
+	char			*base;
+
+	i = (unsigned int)var;
+	base = "0123456789";
+	if (i > 9)
+	{
+		ft_unsigned_int(i / 10, len);
+		i = i % 10;
+	}
+	ft_putchar(base[i], len);
 }

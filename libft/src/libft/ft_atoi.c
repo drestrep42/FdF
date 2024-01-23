@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/10 19:14:56 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:04:31 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+int	ft_atoi(const char *str)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	int	res;
+	int	sgn;
+	int	i;
+
+	res = 0;
+	sgn = 1;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if ((str[i] == '+') || (str[i] == '-'))
+	{
+		if (str[i] == '-')
+			sgn *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (sgn * res);
 }

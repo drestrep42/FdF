@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/30 11:41:58 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:16 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	t_list	*aux;
+
+	if (lst && *lst)
+	{
+		while (*lst)
+		{
+			aux = (*lst)-> next;
+			del((*lst)-> content);
+			free(*lst);
+			*lst = aux;
+		}
+	}
 }

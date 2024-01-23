@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/06/13 22:52:29 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:04:51 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+int	ft_isalpha(int c)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/27 01:32:04 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:04 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	t_list	*aux;
+
+	if (!new)
+		return ;
+	if (lst)
+	{
+		if (*lst != NULL)
+		{
+			aux = *lst;
+			while (aux->next)
+				aux = aux->next;
+			aux->next = new;
+			return ;
+		}
+		*lst = new;
+		return ;
+	}
 }

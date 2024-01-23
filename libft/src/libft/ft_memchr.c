@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/06 01:17:41 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:40 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	size_t			i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (((char *)s)[i] == (char)c)
+			return (&((char *)s)[i]);
+		i++;
+	}
+	return (NULL);
 }

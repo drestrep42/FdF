@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:07:23 by drestrep          #+#    #+#             */
-/*   Updated: 2023/09/21 14:02:11 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:44:36 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ typedef struct s_mlx_data
 
 int	main(void)
 {
-	t_mlx_data data;
-	char	*relative_path = "./test.xpm";
-	int		img_width;
-	int		img_height;
-
+	t_mlx_data	data;
+	char		*relative_path = "./test.xpm";
+	int			img_width;
+	int			img_height;
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL) {
         fprintf(stderr, "mlx_init failed\n");

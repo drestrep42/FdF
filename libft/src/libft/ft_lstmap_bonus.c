@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/30 12:25:46 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:31 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	t_list	*new;
+	t_list	*ptr;
+
+	if (!(lst || f || del))
+		return (NULL);
+	new = NULL;
+	while (lst != NULL)
+	{
+		ptr = ft_lstnew(f(lst->content));
+		if (ptr == NULL)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, ptr);
+		lst = lst->next;
+	}
+	return (new);
 }

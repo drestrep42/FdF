@@ -1,20 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/26 18:00:21 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:06:03 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	print(int fd, char n)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	write (fd, &n, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	c;
+
+	if (n < 0)
+	{
+		print (fd, '-');
+		n *= -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+		return ;
+	}
+	if (n == -2147483648)
+	{
+		write (fd, "2147483648", 10);
+		return ;
+	}
+	c = n + 48;
+	write (fd, &c, 1);
 }

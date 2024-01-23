@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_hexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/11/07 06:19:54 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:02:44 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/ft_printf/ft_printf.h"
 
-void	malloc_error(void)
+void	ft_hexadecimal(unsigned int nbr, int *len, char c)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	char	*base;
+
+	if (c == 'x')
+		base = "0123456789abcdef";
+	if (c == 'X')
+		base = "0123456789ABCDEF";
+	if (nbr > 15)
+	{
+		ft_hexadecimal(nbr / 16, len, c);
+		nbr = nbr % 16;
+	}
+	ft_putchar(base[nbr], len);
 }

@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/10/28 04:30:56 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:03:11 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/ft_printf/ft_printf.h"
 
-void	malloc_error(void)
+void	ft_putstr(char *str, int *len)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	int	i;
+
+	i = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		*len += 6;
+		return ;
+	}
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i], len);
+		i++;
+	}
 }

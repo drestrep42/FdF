@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 00:55:07 by drestrep          #+#    #+#             */
-/*   Updated: 2023/09/21 15:31:09 by drestrep         ###   ########.fr       */
+/*   Updated: 2023/09/24 02:27:50 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ enum
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
+int	close(t_mlx_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	exit (0);
+	return (0);
+}
 
 int	key_pressed(int keysym, t_mlx_data *data)
 {
@@ -123,6 +130,7 @@ int main(void)
 	data.color = 0x00FF00;
 	mlx_hook(data.win_ptr, 2, 0, key_pressed, &data);
 	mlx_hook(data.win_ptr, 6, 0, mouse_in_n_out, &data);
+	mlx_hook(data.win_ptr, 17, 0, close, &data);
 	//mlx_hook(data.win_ptr, 6, 0, mouse_coordinates, &data);
 	mlx_key_hook(data.win_ptr, key_released, &data);
 	mlx_mouse_hook(data.win_ptr, button_pressed, &data);

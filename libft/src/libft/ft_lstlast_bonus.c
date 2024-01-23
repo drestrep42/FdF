@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/08/27 00:41:12 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:28 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	t_list	*aux;
+
+	aux = lst;
+	while (aux)
+	{
+		if (aux->next == NULL)
+			return (aux);
+		aux = aux->next;
+	}
+	return (aux);
 }

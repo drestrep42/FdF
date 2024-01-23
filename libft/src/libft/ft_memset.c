@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/06/14 22:11:40 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:52 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		((char *)b)[i] = c;
+		i++;
+	}
+	return (b);
 }

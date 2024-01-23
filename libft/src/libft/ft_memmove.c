@@ -1,20 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 00:08:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/05 17:11:24 by drestrep         ###   ########.fr       */
+/*   Created: 2022/07/07 00:09:40 by drestrep          #+#    #+#             */
+/*   Updated: 2023/12/06 18:05:48 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/libft/libft.h"
 
-void	malloc_error(void)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (1)
-		perror("Malloc error");
-	exit(1);
+	size_t	i;
+
+	if ((char *)dst == (char *)src)
+		return (dst);
+	if ((char *)dst < (char *)src)
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len)
+		{
+			i = len - 1;
+			((char *)dst)[i] = ((char *)src)[i];
+			len--;
+		}
+	}
+	return (dst);
 }
