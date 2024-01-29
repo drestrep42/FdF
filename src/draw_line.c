@@ -6,14 +6,13 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/23 18:58:01 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:18:34 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	
-my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int x, int y, int color)
 {
 	int	offset;
 
@@ -72,7 +71,7 @@ void	bigger_than_1(t_fdf fdf, t_points points, int abs_dx, int abs_dy)
 		}
 		else
 			p = p + 2 * abs_dx;
-		my_pixel_put(&fdf.map.img, points.x0, points.y0, 0x00FF0000);
+		my_pixel_put(&fdf.map.img, points.x0, points.y0, RED);
 		i++;
 	}
 }

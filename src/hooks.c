@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 02:29:20 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/20 20:37:29 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:05:29 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	key_handle(int keysym, t_fdf fdf)
 	if (keysym == 2)
 		draw_line(fdf, fdf.map.points);
 	if (keysym == 36)
+	{
+		set_projection(fdf);
 		draw_map(fdf);
+	}
 	/* if (keysym == 123 || keysym == 124 || keysym == 125 || keysym == 126)
 		move_map(fdf, keysym); */
 }
