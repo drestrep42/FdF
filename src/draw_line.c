@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/29 18:18:34 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:17:05 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	bigger_than_1(t_fdf fdf, t_points points, int abs_dx, int abs_dy)
 
 	i = 0;
 	p = 2 * abs_dx - abs_dy;
+	//ft_printf("Se ejecuta\n");
 	while (i < abs_dy)
 	{
 		if (points.dy < 0)
