@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 02:29:20 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/21 16:44:36 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:29:24 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	close_win(t_fdf *fdf)
 void	key_handle(int keysym, t_fdf fdf)
 {
 	ft_printf("The key %d has been pressed\n", keysym);
-	if (keysym == 2)
-		draw_line(fdf, fdf.map.points);
 	if (keysym == 36)
-		draw_map(fdf);
+		draw_map(fdf.map);
 	/* if (keysym == 123 || keysym == 124 || keysym == 125 || keysym == 126)
 		move_map(fdf, keysym); */
 }

@@ -6,13 +6,13 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:04:45 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/21 16:55:02 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:59:31 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	is_hex(t_points point, char *line, int counter)
+int	hex_color(char *line, int counter)
 {
 	char	*substr;
 
@@ -32,23 +32,21 @@ int	is_hex(t_points point, char *line, int counter)
 			}
 			counter++;
 		}
-		ft_printf("%s\n", substr);
-		point.color = ft_atoi(substr);
 		return (1);
 	}
-	ft_printf("INVALID_MAP hex is not starting with ',0x'\n");
+	ft_printf("INVALID_MAP hex color is not correctly defined\n");
 	free(line);
 	exit(1);
 }
 
-void	check_is_number(t_points point, char *line)
+void	check_numbers(char *line)
 {
 	int	counter;
 
 	counter = 0;
 	while (line[counter] != '\n' && line[counter] != '\0')
 	{
-		if (line[counter] == ',' && is_hex(point, line, counter))
+		if (line[counter] == ',' && hex_color(line, counter))
 			counter += 9;
 		else if (!ft_isdigit (line[counter]) && line[counter] != ' '
 			&& line[counter] != '-')
@@ -97,7 +95,7 @@ void	check_spaces(char *line)
 	}
 }
 
-t_map	read_map(t_map map, int fd) 
+t_map	parsing(t_map map, int fd) 
 {
 	char	*line;
 	int		numbers;
@@ -118,7 +116,7 @@ t_map	read_map(t_map map, int fd)
 		x = 0;
 		while (x < map.x_nbrs)
 		{
-			check_is_number(map.points, line);
+			check_numbers(line);
 			x++;
 		}
 		map.y_nbrs++;

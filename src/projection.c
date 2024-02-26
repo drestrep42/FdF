@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:40 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/21 16:43:03 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:46:01 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	set_projection(t_points point)
 	float	z;
 	float	angle;
 
-	x = point.x0;
-	y = point.y0;
+	x = point.x;
+	y = point.y;
 	z = point.z;
 	angle = deg_to_rad(30);
 	point.x = (x + y) * cosf(angle);

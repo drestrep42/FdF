@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/21 17:17:05 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/02/25 21:04:37 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,84 +20,65 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)(offset + img->img_pixel_ptr) = color;
 }
 
-void	smaller_than_1(t_fdf fdf, t_points points, int abs_dx, int abs_dy)
+void	smaller_than_1(t_map map, t_vector vector)
 {
-	int	i;
-	int	p;
+	t_points	current_point;
+	int			i;
+	int			p;
+	int			t;
 
+	current_point = vector.start_point;
 	i = 0;
-	p = 2 * abs_dy - abs_dx;
-	while (i < abs_dx)
+	p = 2 * vector.dy - vector.dx;
+	while (i < vector.dx)
 	{
-		if (points.dx < 0)
-			points.x0--;
-		else
-			points.x0++;
-		if (p >= 0)
-		{
-			p = p + 2 * (abs_dy - abs_dx);
-			if (points.dy < 0)
-				points.y0--;
-			else
-				points.y0++;
-		}
-		else
-			p = p + 2 * abs_dy;
-		my_pixel_put(&fdf.map.img, points.x0, points.y0, RED);
+		t = i * (vector.dx / map.tile_size);
+		current_point = change_values_0(vector, current_point, p, t);
+		my_pixel_put(&map.img, current_point.x, current_point.y,
+			RED);
 		i++;
 	}
 }
 
-void	bigger_than_1(t_fdf fdf, t_points points, int abs_dx, int abs_dy)
+void	bigger_than_1(t_map map, t_vector vector)
 {
-	int	i;
-	int	p;
+	t_points	current_point;
+	static int	p;
+	int			i;
+	int			t;
 
+	current_point = vector.start_point;
+	p = 2 * vector.dx - vector.dy;
 	i = 0;
-	p = 2 * abs_dx - abs_dy;
-	//ft_printf("Se ejecuta\n");
-	while (i < abs_dy)
+	while (i < vector.dy)
 	{
-		if (points.dy < 0)
-			points.y0--;
-		else
-			points.y0++;
-		if (p >= 0)
-		{
-			p = p + 2 * (abs_dx - abs_dy);
-			if (points.dx < 0)
-				points.x0--;
-			else
-				points.x0++;
-		}
-		else
-			p = p + 2 * abs_dx;
-		my_pixel_put(&fdf.map.img, points.x0, points.y0, RED);
+		t = i * (vector.dy / map.tile_size);
+		current_point = change_values_1(vector, current_point, p, t);
+		my_pixel_put(&map.img, current_point.x, current_point.y,
+			RED);
 		i++;
 	}
 }
 
-void	draw_line(t_fdf fdf, t_points points)
+void	draw_line(t_map map, t_vector vector)
 {
-	int	abs_dx;
-	int	abs_dy;
 	int	slope;
 
-	points.dx = points.xf - points.x0;
-	points.dy = points.yf - points.y0;
-	abs_dx = abs(points.dx);
-	abs_dy = abs(points.dy);
-	if (abs_dx == 0)
+	vector.dx = abs(vector.end_point.x - vector.start_point.x);
+	vector.dy = abs(vector.end_point.y - vector.start_point.y);
+	if (vector.dx == 0)
 		slope = 1;
-	else if (abs_dy == 0)
+	else if (vector.dy == 0)
 		slope = 0;
 	else
-		slope = abs_dy / abs_dx;
+		slope = vector.dy / vector.dx;
 	if (slope >= 1)
-		bigger_than_1(fdf, points, abs_dx, abs_dy);
+		bigger_than_1(map, vector);
 	else
-		smaller_than_1(fdf, points, abs_dx, abs_dy);
+		smaller_than_1(map, vector);
 }
 
-	/* ft_printf("x0: %d\nxf: %d\ny0: %d\nyf: %d\n", fdf.map.img.points.x0, fdf.map.img.points.xf, fdf.map.img.points.y0, fdf.map.img.points.yf);
+	/* ft_printf("x0: %d\nxf: %d\ny0: %d\nyf: %d\n", \
+	fdf.map.img.points.x0, fdf.map.img.points.xf, \
+	fdf.map.img.points.y0, fdf.map.img.points.yf);
 	exit(0); */
