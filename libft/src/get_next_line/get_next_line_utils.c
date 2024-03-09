@@ -5,34 +5,96 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 20:35:33 by drestrep          #+#    #+#             */
-/*   Updated: 2024/01/04 19:58:07 by drestrep         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:26:28 by drestrep          #+#    #+#             */
-/*   Updated: 2023/06/15 11:11:07 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:15:04 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
-int definechar(char *stash, int i)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
-    if (stash[i] == '\n')
-        return (2);
-    else
-        return (1);
+	char	*ptr;
+	size_t	i;
+
+	i = 0;
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return (0);
+	ptr = malloc(count * size);
+	if (ptr == 0)
+	{
+		free (ptr);
+		return (NULL);
+	}
+	while (i < count * size)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
 }
 
-char	*ft_next_line(char *readed)
+char	*ft_strjoin_gnl(char *readed, char *stash)
+{
+	size_t	i;
+	size_t	j;
+	char	*line;
+
+	i = 0;
+	j = 0;
+	if (!readed || !stash)
+		return (NULL);
+	line = malloc(sizeof(char) * ((ft_strlen_gnl(readed) + ft_strlen_gnl(stash)) + 1));
+	if (!line)
+		return (NULL);
+	while (readed[i])
+	{
+		line[i] = readed[i];
+		i++;
+	}
+	while (stash[j])
+	{
+		line[i] = stash[j];
+		i++;
+		j++;
+	}
+	line[ft_strlen_gnl(readed) + ft_strlen_gnl(stash)] = '\0';
+	free(readed);
+	return (line);
+}
+
+int	ft_strlen_gnl(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str != '\0')
+	{
+		str++;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strchr_gnl(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen_gnl(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_next_line_gnl(char *readed)
 {
 	char	*nl;
 	int		i;
@@ -46,7 +108,7 @@ char	*ft_next_line(char *readed)
 		free(readed);
 		return (NULL);
 	}
-	nl = malloc(sizeof(char) * (ft_strlen(readed) - i + 1));
+	nl = malloc(sizeof(char) * (ft_strlen_gnl(readed) - i + 1));
 	if (!nl)
 		return (NULL);
 	i++;

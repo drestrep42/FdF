@@ -6,12 +6,20 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:09:44 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/25 16:45:52 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:00:49 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_bresenham
+{
+	int			sx;
+	int			sy;
+	int			err;
+	int			e2;
+}				t_bresenham;
 
 typedef struct s_points
 {

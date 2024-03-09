@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:25:33 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/22 19:58:31 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:49:09 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,3 @@ t_map	map_init(t_map map)
 	}
 	return (map);
 }
-
-/* ft_printf("\nNumbers on the X axis: %d\nNumbers on the Y axis: %d\nMap width: %d\nTile size: %d\n",
-	map.x_nbrs, map.y_nbrs, map.width, map.img.tile_size);
-	exit(0);
-	ft_printf("\n\nx0: %d\nxf: %d\ny0: %d\nyf: %d\n", map.img.points.x0, map.img.points.xf, map.img.points.y0, map.img.points.yf);
-	exit(0); */

@@ -6,15 +6,22 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 02:29:20 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/23 18:29:24 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:49:23 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+void	ft_free(t_fdf fdf)
+{
+	mlx_destroy_image(fdf.mlx_ptr, fdf.map.img.img_ptr),
+	mlx_destroy_window(fdf.mlx_ptr, fdf.win_ptr);
+	free(fdf.map.coord);
+}
+
 int	close_win(t_fdf *fdf)
 {
-	(void)fdf;
+	ft_free(*fdf);
 	exit(0);
 }
 
@@ -23,8 +30,6 @@ void	key_handle(int keysym, t_fdf fdf)
 	ft_printf("The key %d has been pressed\n", keysym);
 	if (keysym == 36)
 		draw_map(fdf.map);
-	/* if (keysym == 123 || keysym == 124 || keysym == 125 || keysym == 126)
-		move_map(fdf, keysym); */
 }
 
 int	handle_input(int keysym, t_fdf *fdf)

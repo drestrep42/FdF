@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:54:16 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/21 19:36:42 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:49:37 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 t_img	img_init(void *mlx_ptr)
 {
 	t_img	img;
+
 	img.img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);
 	img.img_pixel_ptr = mlx_get_data_addr(img.img_ptr,
 			&img.bpp,
@@ -33,7 +34,7 @@ t_fdf	fdf_init(void)
 	if (!fdf.win_ptr)
 	{
 		free (fdf.mlx_ptr);
-		malloc_error();
+		exit(1);
 	}
 	fdf.map.img = img_init(fdf.mlx_ptr);
 	return (fdf);

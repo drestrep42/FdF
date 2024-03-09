@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drestrep <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:11:31 by drestrep          #+#    #+#             */
-/*   Updated: 2024/02/22 16:15:02 by drestrep         ###   ########.fr       */
+/*   Updated: 2022/09/12 05:29:51 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft/libft.h"
+#include "libft.h"
 
 char	*ft_str(long aux, long size, long n1, int n)
-{
+{	
 	char	*str;
 
 	str = (char *) malloc(size + 1 * sizeof(char));
