@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 21:14:01 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/09 23:32:47 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/11 23:20:43 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **argv)
 	t_fdf	fdf;
 	int		fd;
 	
-	//atexit(ft_leaks);
+	atexit(ft_leaks);
 	fd = open(argv[1], O_RDONLY);
 	if (ac != 2 || ft_memcmp(argv[1], "", 1) == 0 || fd < 0)
 	{

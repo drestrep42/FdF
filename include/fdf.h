@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:06:34 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/09 19:52:27 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/11 22:56:17 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_points	set_projection(t_points point);
 //	EVENTS
 void		key_handle(int keysym, t_fdf fdf);
 int			handle_input(int keysym, t_fdf *fdf);
-int			close_win(t_fdf *fdf);
+int			close_win(t_fdf fdf);
 
 //	COLOR GRADIENT
 int			interpolate(int color1, int color2, float t);
