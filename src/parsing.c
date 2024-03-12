@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:04:45 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/11 23:20:03 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:25:28 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,13 @@ int	count_numbers(char *line)
 		{
 			hex = get_string(line + counter, '0', ' ');
 			if (check_hex_color(hex) == -1)
-			{
-				free(hex);
-				error(WRONGLY_DEFINED_COLOR, line);
-			}
+				parsing_error(WRONGLY_DEFINED_COLOR, line);
 			counter += ft_strlen(hex);
 			free(hex);
 		}
 		else if (!ft_isdigit(line[counter]) \
 		&& line[counter] != ' ' && line[counter] != '-')
-			error(WRONGLY_DEFINED_NUMBER, line);
-		if (line[counter] == '\0')
-			return (number_of_numbers);
+			parsing_error(WRONGLY_DEFINED_NUMBER, line);
 		if (ft_isdigit(line[counter]) && !ft_isdigit(line[counter + 1]))
 			number_of_numbers++;
 		counter++;
@@ -100,7 +95,7 @@ void	check_spaces(char *line)
 	while (line[counter] != '\n' && line[counter] != '\0')
 	{
 		if (ft_issign(line[counter]) && line[counter - 1] != ' ')
-			error(WRONGLY_DEFINED_NUMBER, line);
+			parsing_error(WRONGLY_DEFINED_NUMBER, line);
 		counter++;
 	}
 }
@@ -118,7 +113,7 @@ t_map	parsing(t_map map, int fd)
 		check_spaces(line);
 		map.x_nbrs = count_numbers(line);
 		if (map.x_nbrs != numbers)
-			error(WRONG_AMOUNT_OF_NUMBERS, line);
+			parsing_error(WRONG_AMOUNT_OF_NUMBERS, line);
 		map.y_nbrs++;
 		free(line);
 		line = get_next_line(fd);

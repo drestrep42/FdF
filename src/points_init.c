@@ -6,11 +6,24 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:53:51 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/11 23:10:05 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/12 22:53:07 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void	free_array(char **ints)
+{
+	int	i;
+
+	i = 0;
+	while (ints && ints[i])
+	{
+		free(ints[i]);
+		i++;
+	}
+	free(ints);
+}
 
 int	hex_to_decimal(char hex)
 {
@@ -59,9 +72,9 @@ void	assign_coord_values(t_map map, t_points position, char **int_array)
 		map.coord[position.y][position.x].x = position.x;
 		map.coord[position.y][position.x].y = position.y;
 		map.coord[position.y][position.x].z = \
-		ft_atoi(int_array[position.x]);
+			ft_atoi(int_array[position.x]) * 10;
 		if (!ft_strchr(int_array[position.x], ','))
-			map.coord[position.y][position.x].color = RED;
+			map.coord[position.y][position.x].color = BLUE;
 		else
 		{
 			hex_value = ft_strchr(int_array[position.x], ',') + 1;
@@ -77,6 +90,7 @@ t_points	**points_init(t_map map, int fd)
 	char		*line;
 	char		**int_array;
 
+	ft_bzero(&position, sizeof(position));
 	position.y = 0;
 	line = get_next_line(fd);
 	map.coord = ft_calloc(map.y_nbrs + 1, sizeof(t_points *));

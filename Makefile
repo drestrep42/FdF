@@ -6,14 +6,14 @@
 #    By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/17 19:54:56 by drestrep          #+#    #+#              #
-#    Updated: 2024/03/11 22:56:57 by drestrep         ###   ########.fr        #
+#    Updated: 2024/03/12 15:42:07 by drestrep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= 		fdf
 
 CC 				= 		gcc
-CFLAGS 			= 		-g3 -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS 			= 		-g3 -Wall -Wextra -Werror #-O3
 
 LIBRARIES		=		-lmlx -lft -L$(LIBFT_DIR) -L$(MINILIBX_DIR) -framework OpenGL -framework AppKit
 	

@@ -6,16 +6,11 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:56:22 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/09 22:15:28 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:47 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	leaks()
-{
-	system("leaks -q a.out");
-}
 
 char	*ft_readed(int fd, char *readed)
 {

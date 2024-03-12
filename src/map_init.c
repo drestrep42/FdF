@@ -6,23 +6,11 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:25:33 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/11 22:37:34 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:35:20 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-void	free_array(char **ints)
-{
-	int	i;
-
-	i = 0;
-	while (ints && ints[i])
-	{
-		free(ints[i]);
-		i++;
-	}
-}
 
 t_map	map_init(t_map map)
 {
