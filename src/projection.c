@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:40 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/05 15:24:34 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:26:59 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_points	set_projection(t_points point)
 {
+	float	angle;
 	float	x;
 	float	y;
 	float	z;
-	float	angle;
 
 	x = point.x;
 	y = point.y;

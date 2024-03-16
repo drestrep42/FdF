@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:06:34 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 17:02:24 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:09:49 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,47 @@
 # include <errno.h>
 # include <unistd.h>
 
-# define ERROR_USAGE "Correct use: ./fdf map_name.fdf\n"
-# define WRONGLY_DEFINED_COLOR "Hexadecimal color is not correctly defined\n"
-# define WRONGLY_DEFINED_NUMBER "Number is not correctly defined\n"
-# define WRONG_AMOUNT_OF_NUMBERS "Wrong amount of numbers\n"
+# define ERROR_USAGE				"Correct use: ./fdf map_name.fdf\n"
+# define WRONGLY_DEFINED_COLOR		"Hexadecimal color not correctly defined\n"
+# define WRONGLY_DEFINED_NUMBER		"Number is not correctly defined\n"
+# define WRONG_AMOUNT_OF_NUMBERS	"Wrong amount of numbers\n"
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 			1000
+# define HEIGHT			1000
 
-# define RED	0xFF0000
-# define GREEN	0x00FF00
-# define BLUE	0x0000FF
+# define RED			0xFF0000
+# define GREEN			0x00FF00
+# define BLUE			0x0000FF
+# define BLACK			0x000000
+# define WHITE			0xFFFFFF
+
+# define R				15
+# define G				5
+# define B				11
+# define W				13
+
+# define P				35
+# define I				34
+
+# define ENTER			36
+# define LEFT_KEY		123
+# define RIGHT_KEY		124
+# define DOWN_KEY		125
+# define UP_KEY			126
+# define PLUS			69
+# define MINUS 			78
+# define CLOSE_WINDOW 	17
+# define ESC 			53
 
 //	PARSE
-t_map		parsing(t_map map, int fd);
+void		parsing(t_map *map, int fd);
 void		free_array(char **ints);
 
 //	PROGRAM INITIALIZER
-t_map		map_init(t_map map);
+void		map_init(t_map *map);
 t_fdf		fdf_init(void);
 t_img		img_init(void *mlx_ptr);
-t_points	**points_init(t_map map, int fd);
+void		points_init(t_map *map, int fd);
 
 //	SET PROJECTIONS
 t_points	set_projection(t_points point);
@@ -70,9 +90,16 @@ t_points	rotation_matrices(t_points point);
 double		deg_to_rad(double alpha);
 
 //	ERROR MANAGEMENT
-void usage_error(void);
-void parsing_error(char *error, char *line);
-void ft_free(t_fdf fdf);
+void		usage_error(void);
+void		parsing_error(char *error, char *line);
 
+// COLOR MAP
+void		color_map(int keysym, t_map *map);
+void		change_color(t_map *map, int color);
+
+// MOVE MAP
+void		move_map(int keysym, t_map *map);
+void		move_map_iso(int keysym, t_map *map);
+void		move_map_pararell(int keysym, t_map *map);
 
 #endif

@@ -3,20 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drestrep <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 19:14:56 by drestrep          #+#    #+#             */
-/*   Updated: 2022/09/12 05:27:22 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:19:31 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft/libft.h"
 
-int	ft_atoi(const char *str)
+void check_size(double res)
 {
-	int	res;
-	int	sgn;
-	int	i;
+	if (res > INT32_MAX || res < INT32_MIN)
+	{
+		ft_printf("All numbers must be within INT max and min\n", res);
+		exit(1);
+	}
+}
+
+int ft_atoi(const char *str)
+{
+	double res;
+	int sgn;
+	int i;
 
 	res = 0;
 	sgn = 1;
@@ -34,5 +43,6 @@ int	ft_atoi(const char *str)
 		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
-	return (sgn * res);
+	check_size(sgn * res);
+	return (sgn * (int)res);
 }

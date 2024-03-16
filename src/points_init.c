@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:53:51 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 22:53:07 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:40:44 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,78 +25,41 @@ void	free_array(char **ints)
 	free(ints);
 }
 
-int	hex_to_decimal(char hex)
-{
-	if (hex >= '0' && hex <= '9')
-		return (hex - '0');
-	else if (hex >= 'A' && hex <= 'F')
-		return (hex - 'A' + 10);
-	else if (hex >= 'a' && hex <= 'f')
-		return (hex - 'a' + 10);
-	else
-		return (-1);
-}
-
-int	ft_atoi_base(char *str)
-{
-	int		number;
-	int		digit;
-	int		i;
-
-	number = 0;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '0' && str[i + 1] == 'x')
-		i += 2;
-	while (str[i] != '\0' && str[i] != '\n')
-	{
-		digit = hex_to_decimal(str[i]);
-		if (digit == -1)
-		{
-			ft_printf("%s wrong hex value, %c", str, str[i]);
-			exit(1);
-		}
-		number = number * 16 + digit;
-		i++;
-	}
-	return (number);
-}
-
-void	assign_coord_values(t_map map, t_points position, char **int_array)
+void	assign_coord_values(t_map *map, t_points position, char **int_array)
 {
 	char	*hex_value;
+	int		height;
 
-	while (position.x < map.x_nbrs)
+	while (position.x < map->x_nbrs)
 	{
-		map.coord[position.y][position.x].x = position.x;
-		map.coord[position.y][position.x].y = position.y;
-		map.coord[position.y][position.x].z = \
-			ft_atoi(int_array[position.x]) * 10;
+		height = ft_atoi(int_array[position.x]);
+		map->coord[position.y][position.x].x = position.x;
+		map->coord[position.y][position.x].y = position.y;
+		map->coord[position.y][position.x].z = height;
 		if (!ft_strchr(int_array[position.x], ','))
-			map.coord[position.y][position.x].color = BLUE;
+			map->coord[position.y][position.x].color = WHITE;
 		else
 		{
 			hex_value = ft_strchr(int_array[position.x], ',') + 1;
-			map.coord[position.y][position.x].color = ft_atoi_base(hex_value);
+			map->coord[position.y][position.x].color = ft_atoi_base(hex_value);
 		}
 		position.x++;
 	}
 }
 
-t_points	**points_init(t_map map, int fd)
+void	points_init(t_map *map, int fd)
 {
 	t_points	position;
 	char		*line;
 	char		**int_array;
 
-	ft_bzero(&position, sizeof(position));
 	position.y = 0;
 	line = get_next_line(fd);
-	map.coord = ft_calloc(map.y_nbrs + 1, sizeof(t_points *));
-	while (position.y < map.y_nbrs)
+	ft_bzero(&position, sizeof(position));
+	map->coord = ft_calloc(map->y_nbrs + 1, sizeof(t_points *));
+	while (position.y < map->y_nbrs)
 	{
-		map.coord[position.y] = ft_calloc(map.x_nbrs + 1, sizeof(t_points));
+		map->coord[position.y] = ft_calloc(map->x_nbrs + 1, sizeof(t_points));
 		int_array = ft_split(line, ' ');
 		assign_coord_values(map, position, int_array);
 		free_array(int_array);
@@ -104,6 +67,10 @@ t_points	**points_init(t_map map, int fd)
 		line = get_next_line(fd);
 		position.y++;
 	}
-	free(line);
-	return (map.coord);
+	/* ft_printf("z sum: %d\n", map->z_sum / (map->x_nbrs * map->y_nbrs));
+	exit(0); */
+	
 }
+
+// CREATE A NEW HOOK ONE TO GENERATE THE MAP, THE OTHER ONE TO CHANGE THE VALUES OF THE MAP
+// ONLY ONE PUT_IMAGE_TO_WINDOW

@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:09:44 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/06 23:00:49 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:41:28 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ typedef struct s_vector
 
 typedef struct s_map
 {
+	// int			param;
 	int			width;
 	int			height;
 	int			x_nbrs;
 	int			y_nbrs;
 	int			tile_size;
+	char		projection;
 	t_points	start_point;
 	t_points	end_point;
 	t_points	**coord;

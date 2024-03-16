@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 15:44:58 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:43:22 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	count_steps(t_vector vector, t_bresenham bresenham)
 void	draw_pixels(t_map map, t_vector vector, t_bresenham bresenham)
 {
 	float	step_size;
+	float	t;
 	int		steps;
 	int		gradient;
 	int		i;
-	float	t;
 
 	steps = count_steps(vector, bresenham);
 	step_size = 1.0 / steps;
@@ -85,9 +85,16 @@ void	bres(t_map map, t_vector vector)
 {
 	t_bresenham	bresenham;
 
-	ft_bzero(&bresenham, sizeof(bresenham));
-	vector.start_point = rotation_matrices(vector.start_point);
-	vector.end_point = rotation_matrices(vector.end_point);
+	if (map.projection == 'I')
+	{
+		vector.start_point = rotation_matrices(vector.start_point);
+		vector.end_point = rotation_matrices(vector.end_point);
+	}
+	else if (map.projection == 'P')
+	{
+		vector.start_point = vector.start_point;
+		vector.end_point = vector.end_point;
+	}
 	vector.dx = abs(vector.end_point.x - vector.start_point.x);
 	vector.dy = abs(vector.end_point.y - vector.start_point.y);
 	bresenham.err = vector.dx - vector.dy;

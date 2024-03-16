@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:04:45 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 16:25:28 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:22:54 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,6 @@ int	check_hex_color(char *line)
 	return (1);
 }
 
-char	*get_string(char *s1, char start, char end)
-{
-	char	*s2;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (s1[i] != start && s1[i] != '\0' && s1[i] != '\n')
-		i++;
-	if (s1[i] == start)
-	{
-		while (s1[i] != end && s1[i] != '\0' && s1[i] != '\n')
-		{
-			i++;
-			j++;
-		}
-		s2 = malloc((j + 2) * sizeof(char));
-		i -= j;
-		j = 0;
-		while (s1[i] != end && s1[i] != '\0' && s1[i] != '\n')
-			s2[j++] = s1[i++];
-		s2[j] = s1[i];
-		s2[j + 1] = '\0';
-		return (s2);
-	}
-	return (NULL);
-}
-
 int	count_numbers(char *line)
 {
 	char	*hex;
@@ -71,7 +42,7 @@ int	count_numbers(char *line)
 	{
 		if (line[counter] == ',')
 		{
-			hex = get_string(line + counter, '0', ' ');
+			hex = ft_get_string(line + counter, '0', ' ');
 			if (check_hex_color(hex) == -1)
 				parsing_error(WRONGLY_DEFINED_COLOR, line);
 			counter += ft_strlen(hex);
@@ -100,24 +71,23 @@ void	check_spaces(char *line)
 	}
 }
 
-t_map	parsing(t_map map, int fd)
+void	parsing(t_map *map, int fd)
 {
 	char	*line;
 	int		numbers;
 
-	map.y_nbrs = 0;
+	map->y_nbrs = 0;
 	line = get_next_line(fd);
 	numbers = count_numbers(line);
 	while (line)
 	{
 		check_spaces(line);
-		map.x_nbrs = count_numbers(line);
-		if (map.x_nbrs != numbers)
+		map->x_nbrs = count_numbers(line);
+		if (map->x_nbrs != numbers)
 			parsing_error(WRONG_AMOUNT_OF_NUMBERS, line);
-		map.y_nbrs++;
+		map->y_nbrs++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
-	return (map);
 }
