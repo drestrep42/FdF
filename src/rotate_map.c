@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_map.c                                        :+:      :+:    :+:   */
+/*   rotate_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 00:52:32 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/20 13:39:40 by drestrep         ###   ########.fr       */
+/*   Created: 2024/03/22 14:55:13 by drestrep          #+#    #+#             */
+/*   Updated: 2024/03/23 15:52:12 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void change_color(t_map *map, int color)
+void	rotate_z(t_points *point)
 {
-	int x;
-	int y;
+	double alpha;
 
-	y = 0;
-	while (y < map->y_nbrs)
-	{
-		x = 0;
-		while (x < map->x_nbrs)
-		{
-			map->coord[y][x].color = color;
-			x++;
-		}
-		y++;
-	}
+	alpha = deg_to_rad(45);
+	point->x = point->x * cos(alpha) - point->y * sin(alpha);
+	point->y = point->x * sin(alpha) + point->y * cos(alpha);
+	point->z = point->z;
 }
 
-void color_map(int keysym, t_map *map)
+void	rotate_x(t_points *point)
 {
-	if (keysym == R)
-		change_color(map, RED);
-	if (keysym == G)
-		change_color(map, GREEN);
-	if (keysym == B)
-		change_color(map, BLUE);
+	double alpha;
+
+	alpha = deg_to_rad(35.264);
+	point->x = point->x;
+	point->y = point->y * cos(alpha) - point->z * sin(alpha);
+	point->z = point->y * sin(alpha) + point->z * cos(alpha);
 }

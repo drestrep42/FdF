@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_map.c                                         :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 00:47:15 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/16 00:51:01 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:50:59 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+void change_height(int keysym, t_map *map)
+{
+	if (keysym == MINUS)
+		map->multiplier -= 1.5;
+	if (keysym == PLUS)
+		map->multiplier += 1.5;
+}
+
 void	move_map_pararell(int keysym, t_map *map)
 {
-	if (keysym == LEFT_KEY)
+	if (keysym == LK || keysym == A)
 	{
 		map->start_point.x -= 10;
 		map->end_point.x -= 10;
 	}
-	if (keysym == RIGHT_KEY)
+	if (keysym == RK || keysym == D)
 	{
 		map->start_point.x += 10;
 		map->end_point.x += 10;
 	}
-	if (keysym == DOWN_KEY)
+	if (keysym == DK || keysym == S)
 	{
 		map->start_point.y += 10;
 		map->end_point.y += 10;
 	}
-	if (keysym == UP_KEY)
+	if (keysym == UK || keysym == W)
 	{
 		map->start_point.y -= 10;
 		map->end_point.y -= 10;
@@ -38,32 +46,38 @@ void	move_map_pararell(int keysym, t_map *map)
 
 void	move_map_iso(int keysym, t_map *map)
 {
-	if (keysym == LEFT_KEY || keysym == UP_KEY)
+	if (keysym == LK || keysym == UK || keysym == A || keysym == W)
 	{
 		map->start_point.x -= 10;
 		map->end_point.x -= 10;
 	}
-	if (keysym == LEFT_KEY || keysym == DOWN_KEY)
+	if (keysym == LK || keysym == DK || keysym == A || keysym == S)
 	{
 		map->start_point.y += 10;
 		map->end_point.y += 10;
 	}
-	if (keysym == RIGHT_KEY || keysym == DOWN_KEY)
+	if (keysym == RK || keysym == DK || keysym == D || keysym == S)
 	{
 		map->start_point.x += 10;
 		map->end_point.x += 10;
 	}
-	if (keysym == RIGHT_KEY || keysym == UP_KEY)
+	if (keysym == RK || keysym == UK || keysym == D || keysym == W)
 	{
 		map->start_point.y -= 10;
 		map->end_point.y -= 10;
 	}
 }
 
-void	move_map(int keysym, t_map *map)
+int	events(int keysym, t_fdf *fdf)
 {
-	if (map->projection == 'I')
-		move_map_iso(keysym, map);
-	if (map->projection == 'P')
-		move_map_pararell(keysym, map);
+	blackscreen(fdf->map);
+	if (fdf->map.projection == 'I')
+		move_map_iso(keysym, &fdf->map);
+	if (fdf->map.projection == 'P')
+		move_map_pararell(keysym, &fdf->map);
+	if (keysym == MINUS || keysym == PLUS)
+		change_height(keysym, &fdf->map);
+	draw_map(fdf->map);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->map.img.img_ptr, 0, 0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:22 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:18:37 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,13 @@ void	bres(t_map map, t_vector vector)
 	t_bresenham	bresenham;
 
 	if (map.projection == 'I')
-	{
 		vector.start_point = rotation_matrices(vector.start_point);
-		vector.end_point = rotation_matrices(vector.end_point);
-	}
 	else if (map.projection == 'P')
-	{
 		vector.start_point = vector.start_point;
+	if (map.projection == 'I')
+		vector.end_point = rotation_matrices(vector.end_point);
+	else if (map.projection == 'P')
 		vector.end_point = vector.end_point;
-	}
 	vector.dx = abs(vector.end_point.x - vector.start_point.x);
 	vector.dy = abs(vector.end_point.y - vector.start_point.y);
 	bresenham.err = vector.dx - vector.dy;

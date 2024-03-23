@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:06:34 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/16 01:09:49 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:40:30 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,23 @@
 # define R				15
 # define G				5
 # define B				11
-# define W				13
 
-# define P				35
 # define I				34
+# define P				35
+
+# define KEY_DOWN		2
 
 # define ENTER			36
-# define LEFT_KEY		123
-# define RIGHT_KEY		124
-# define DOWN_KEY		125
-# define UP_KEY			126
+
+# define LK				123
+# define RK				124
+# define DK				125
+# define UK				126
+# define A				0
+# define W				13
+# define S				1
+# define D				2
+
 # define PLUS			69
 # define MINUS 			78
 # define CLOSE_WINDOW 	17
@@ -69,11 +76,6 @@ void		points_init(t_map *map, int fd);
 
 //	SET PROJECTIONS
 t_points	set_projection(t_points point);
-
-//	EVENTS
-void		key_handle(int keysym, t_fdf fdf);
-int			handle_input(int keysym, t_fdf *fdf);
-int			close_win(t_fdf fdf);
 
 //	COLOR GRADIENT
 int			interpolate(int color1, int color2, float t);
@@ -93,13 +95,22 @@ double		deg_to_rad(double alpha);
 void		usage_error(void);
 void		parsing_error(char *error, char *line);
 
-// COLOR MAP
+//	KEY HOOKS
+void		blackscreen(t_map map);
+
+int			key_hooks(int keysym, t_fdf *fdf);
+
+int			close_win(t_fdf fdf);
+
 void		color_map(int keysym, t_map *map);
 void		change_color(t_map *map, int color);
 
-// MOVE MAP
-void		move_map(int keysym, t_map *map);
+int			events(int keysym, t_fdf *fdf);
 void		move_map_iso(int keysym, t_map *map);
 void		move_map_pararell(int keysym, t_map *map);
+
+
+//	MOUSE HOOKS
+void		rotate_map(t_points *point);
 
 #endif

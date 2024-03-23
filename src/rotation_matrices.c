@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:20:44 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 16:06:24 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:54:27 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	deg_to_rad(double alpha)
 	return (alpha * M_PI / 180);
 }
 
-t_points	rotate_z_axis(t_points point)
+t_points rotate_z_axis(t_points point)
 {
 	t_points	new_point;
 	double		alpha;

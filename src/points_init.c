@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:53:51 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/16 00:40:44 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:32:42 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,12 @@ void	assign_coord_values(t_map *map, t_points position, char **int_array)
 	while (position.x < map->x_nbrs)
 	{
 		height = ft_atoi(int_array[position.x]);
-		map->coord[position.y][position.x].x = position.x;
-		map->coord[position.y][position.x].y = position.y;
+		if (height > 0)
+			map->coord[position.y][position.x].height = 1;
+		else if (height < 0)
+			map->coord[position.y][position.x].height = -1;
+		else
+			map->coord[position.y][position.x].height = 0;
 		map->coord[position.y][position.x].z = height;
 		if (!ft_strchr(int_array[position.x], ','))
 			map->coord[position.y][position.x].color = WHITE;
