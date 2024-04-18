@@ -6,13 +6,13 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 19:14:56 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/13 18:19:31 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:35:00 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft/libft.h"
 
-void check_size(double res)
+void	check_size(double res)
 {
 	if (res > INT32_MAX || res < INT32_MIN)
 	{
@@ -21,11 +21,11 @@ void check_size(double res)
 	}
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	double res;
-	int sgn;
-	int i;
+	double	res;
+	int		sgn;
+	int		i;
 
 	res = 0;
 	sgn = 1;

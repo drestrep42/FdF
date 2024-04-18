@@ -6,11 +6,17 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:52:53 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/12 16:17:26 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:05:02 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void	empty_map(void)
+{
+	ft_printf(EMPTY);
+	exit(1);
+}
 
 void	usage_error(void)
 {

@@ -6,13 +6,13 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:38:31 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/14 16:38:46 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:34:16 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft/libft.h"
 
-int hex_to_decimal(char hex)
+int	hex_to_decimal(char hex)
 {
 	if (hex >= '0' && hex <= '9')
 		return (hex - '0');
@@ -24,11 +24,11 @@ int hex_to_decimal(char hex)
 		return (-1);
 }
 
-int ft_atoi_base(char *str)
+int	ft_atoi_base(char *str)
 {
-	int number;
-	int digit;
-	int i;
+	int	number;
+	int	digit;
+	int	i;
 
 	number = 0;
 	i = 0;

@@ -6,28 +6,39 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:04:45 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/14 17:22:54 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:26:42 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	check_hex_color(char *line)
+void	check_spaces(char *line)
+{
+	int	counter;
+
+	counter = 1;
+	while (line[counter] != '\n' && line[counter] != '\0')
+	{
+		if (ft_issign(line[counter]) && line[counter - 1] != ' ')
+			parsing_error(WRONGLY_DEFINED_NUMBER, line);
+		counter++;
+	}
+}
+
+void	check_hex_color(char *hex, char *line)
 {
 	int		counter;
 
 	counter = 0;
-	if (ft_strlen(line) < 4 || ft_strlen(line) > 9)
-		return (-1);
-	if (line[0] != '0' || line[1] != 'x')
-		return (-1);
-	while (counter < ft_strlen(line) - 1)
+	if (ft_strlen(hex) < 4 || ft_strlen(hex) > 9)
+		parsing_error(WRONGLY_DEFINED_COLOR, line);
+	if (hex[0] != '0' || hex[1] != 'x')
+		parsing_error(WRONGLY_DEFINED_COLOR, line);
+	while (counter < ft_strlen(hex) - 1)
 	{
-		if (!ft_isalnum(line[counter]))
-			return (-1);
-		counter++;
+		if (!ft_isalnum(hex[counter++]))
+			parsing_error(WRONGLY_DEFINED_COLOR, line);
 	}
-	return (1);
 }
 
 int	count_numbers(char *line)
@@ -43,8 +54,7 @@ int	count_numbers(char *line)
 		if (line[counter] == ',')
 		{
 			hex = ft_get_string(line + counter, '0', ' ');
-			if (check_hex_color(hex) == -1)
-				parsing_error(WRONGLY_DEFINED_COLOR, line);
+			check_hex_color(hex, line);
 			counter += ft_strlen(hex);
 			free(hex);
 		}
@@ -58,19 +68,6 @@ int	count_numbers(char *line)
 	return (number_of_numbers);
 }
 
-void	check_spaces(char *line)
-{
-	int	counter;
-
-	counter = 1;
-	while (line[counter] != '\n' && line[counter] != '\0')
-	{
-		if (ft_issign(line[counter]) && line[counter - 1] != ' ')
-			parsing_error(WRONGLY_DEFINED_NUMBER, line);
-		counter++;
-	}
-}
-
 void	parsing(t_map *map, int fd)
 {
 	char	*line;
@@ -78,6 +75,8 @@ void	parsing(t_map *map, int fd)
 
 	map->y_nbrs = 0;
 	line = get_next_line(fd);
+	if (!line)
+		empty_map();
 	numbers = count_numbers(line);
 	while (line)
 	{
@@ -89,5 +88,4 @@ void	parsing(t_map *map, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 }

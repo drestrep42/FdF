@@ -6,21 +6,21 @@
 #    By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/17 19:54:56 by drestrep          #+#    #+#              #
-#    Updated: 2024/03/22 13:55:35 by drestrep         ###   ########.fr        #
+#    Updated: 2024/04/18 21:27:34 by drestrep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= 		fdf
 
 CC 				= 		gcc
-CFLAGS 			= 		-g3 -Wall -Wextra -Werror -fsanitize=address #-O3
+CFLAGS 			= 		-g3 -Wall -Wextra -Werror #-fsanitize=address #-O3
 
 LIBRARIES		=		-lmlx -lft -L$(LIBFT_DIR) -L$(MINILIBX_DIR) -framework OpenGL -framework AppKit
 	
 LIBFT_DIR		=		libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
-MINILIBX_DIR	=		libmlx
+MINILIBX_DIR	=		minilibx
 
 SRC_DIR			=		src
 SRCS			=		$(wildcard	src/*.c)

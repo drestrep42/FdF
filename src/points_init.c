@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:53:51 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/21 16:32:42 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:48:18 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	assign_coord_values(t_map *map, t_points position, char **int_array)
 	while (position.x < map->x_nbrs)
 	{
 		height = ft_atoi(int_array[position.x]);
-		if (height > 0)
-			map->coord[position.y][position.x].height = 1;
-		else if (height < 0)
-			map->coord[position.y][position.x].height = -1;
-		else
-			map->coord[position.y][position.x].height = 0;
 		map->coord[position.y][position.x].z = height;
 		if (!ft_strchr(int_array[position.x], ','))
 			map->coord[position.y][position.x].color = WHITE;
@@ -71,10 +65,4 @@ void	points_init(t_map *map, int fd)
 		line = get_next_line(fd);
 		position.y++;
 	}
-	/* ft_printf("z sum: %d\n", map->z_sum / (map->x_nbrs * map->y_nbrs));
-	exit(0); */
-	
 }
-
-// CREATE A NEW HOOK ONE TO GENERATE THE MAP, THE OTHER ONE TO CHANGE THE VALUES OF THE MAP
-// ONLY ONE PUT_IMAGE_TO_WINDOW

@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:25:33 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/23 17:06:43 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:17:27 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	map_init(t_map *map)
 {
-	map->zoom.value = 0;
+	map->zoom = 0;
 	map->multiplier = 1;
 	map->projection = 'I';
 	map->start_point.x = WIDTH * 0.25;

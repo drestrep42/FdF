@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:09:44 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/23 16:46:20 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:29:52 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,27 @@ typedef struct s_vector
 	int			dy;
 }				t_vector;
 
-typedef struct s_zoom
-{
-	int			value;
-	int			x;
-	int			y;
-}				t_zoom;
-
 typedef struct s_map
 {
-	// int			param;
 	int			width;
 	int			height;
 	int			x_nbrs;
 	int			y_nbrs;
 	int			tile_size;
 	int			multiplier;
+	int			zoom;
 	char		projection;
-	t_zoom		zoom;
 	t_points	start_point;
 	t_points	end_point;
 	t_points	**coord;
 	t_vector	vector;
-	t_img		img;
 }				t_map;
 
 typedef struct s_fdf
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_img		img;
 	t_map		map;
 }				t_fdf;
 

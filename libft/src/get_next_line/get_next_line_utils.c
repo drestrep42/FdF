@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:26:28 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/09 22:15:04 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:29:56 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char	*ft_strjoin_gnl(char *readed, char *stash)
 	j = 0;
 	if (!readed || !stash)
 		return (NULL);
-	line = malloc(sizeof(char) * ((ft_strlen_gnl(readed) + ft_strlen_gnl(stash)) + 1));
+	line = malloc(sizeof(char) * \
+	((ft_strlen_gnl(readed) + ft_strlen_gnl(stash)) + 1));
 	if (!line)
 		return (NULL);
 	while (readed[i])
@@ -53,11 +54,7 @@ char	*ft_strjoin_gnl(char *readed, char *stash)
 		i++;
 	}
 	while (stash[j])
-	{
-		line[i] = stash[j];
-		i++;
-		j++;
-	}
+		line[i++] = stash[j++];
 	line[ft_strlen_gnl(readed) + ft_strlen_gnl(stash)] = '\0';
 	free(readed);
 	return (line);

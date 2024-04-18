@@ -6,14 +6,14 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:11:31 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/13 18:20:42 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:33:11 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft/libft.h"
 
 char	*ft_str(long aux, long size, long n1, int n)
-{	
+{
 	char	*str;
 
 	str = (char *) malloc(size + 1 * sizeof(char));

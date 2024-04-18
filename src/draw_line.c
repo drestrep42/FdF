@@ -6,7 +6,7 @@
 /*   By: drestrep <drestrep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:27:12 by drestrep          #+#    #+#             */
-/*   Updated: 2024/03/23 17:18:37 by drestrep         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:27:21 by drestrep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,34 @@ int	count_steps(t_vector vector, t_bresenham bresenham)
 	return (steps);
 }
 
-void	draw_pixels(t_map map, t_vector vector, t_bresenham bresenham)
+void	draw_pixels(t_img img, t_vector vector, t_bresenham bresenham)
 {
 	float	step_size;
 	float	t;
+	int		counter;
 	int		steps;
 	int		gradient;
-	int		i;
 
 	steps = count_steps(vector, bresenham);
 	step_size = 1.0 / steps;
-	i = 0;
-	while (i < steps)
+	counter = 0;
+	while (counter < steps)
 	{
-		t = i * step_size;
+		t = counter * step_size;
 		gradient = interpolate(vector.start_point.color, \
 		vector.end_point.color, t);
 		if (vector.start_point.x > 0 && vector.start_point.x < WIDTH \
 			&& vector.start_point.y > 0 && vector.end_point.y < HEIGHT)
-			my_pixel_put(&map.img, vector.start_point.x, \
+			my_pixel_put(&img, vector.start_point.x, \
 			vector.start_point.y, gradient);
 		bresenham.e2 = 2 * bresenham.err;
 		bresenham.err = get_error(bresenham, vector);
 		vector.start_point = get_next_point(bresenham, vector);
-		i++;
+		counter++;
 	}
 }
 
-void	bres(t_map map, t_vector vector)
+void	draw_line(t_map map, t_img img, t_vector vector)
 {
 	t_bresenham	bresenham;
 
@@ -104,5 +104,5 @@ void	bres(t_map map, t_vector vector)
 		bresenham.sy = 1;
 	else
 		bresenham.sy = -1;
-	draw_pixels(map, vector, bresenham);
+	draw_pixels(img, vector, bresenham);
 }
